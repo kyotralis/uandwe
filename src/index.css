@@ -1,0 +1,61 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+/* ============================================================
+   UANDWE DESIGN TOKENS — Single source of truth for all colors.
+   ============================================================ */
+@theme inline {
+  --color-primary: #f47b20; /* brand orange — use /10, /20 etc. for tints */
+  --color-text:    #111827; /* main text  */
+  --color-border:  #e5e7eb; /* borders    */
+  --color-bg:      #ffffff; /* ← CHANGE THIS to change the page background */
+}
+
+html,
+body {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+button {
+  cursor: pointer;
+}
+
+@keyframes flow {
+  from {
+    stroke-dashoffset: 0;
+  }
+
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+/* News & Insights Carousel */
+.news-carousel-stage {
+  position: relative;
+  width: 100%;
+  overflow: visible;
+  touch-action: pan-y;
+}
+
+.news-carousel-track {
+  display: flex;
+  gap: 1.5rem;
+  /* 24px */
+  will-change: transform;
+}
+
+.news-card-wrapper {
+  flex-shrink: 0;
+  will-change: transform;
+}
+
+.news-card-item {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
