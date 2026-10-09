@@ -806,6 +806,71 @@ const IndustryHero = ({ hero, pageKey }) => {
     );
 };
 
+const IndustryBentoGrid = () => {
+    const rows = [
+        { label: "Time to Market", value: "3× Faster", desc: "vs. traditional in-house hiring and onboarding" },
+        { label: "IP & Ownership", value: "100%", desc: "Everything we build belongs entirely to you" },
+        { label: "Sprint Cycles", value: "2 Weeks", desc: "Live demos every iteration, zero surprises" },
+        { label: "Confidentiality", value: "NDA-First", desc: "Ironclad, always. No exceptions." },
+    ];
+
+    return (
+        <section className="bg-white border-b border-neutral-100">
+            <div className="max-w-[1400px] mx-auto flex flex-col lg:flex-row">
+
+                {/* Left — Full bleed image */}
+                <div className="lg:w-1/2 h-[400px] lg:h-auto min-h-[500px] relative overflow-hidden">
+                    <img
+                        src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=900&auto=format&fit=crop&q=80"
+                        alt="How we work"
+                        className="w-full h-full object-cover grayscale"
+                    />
+                    <div className="absolute inset-0 bg-black/30" />
+                    <div className="absolute bottom-10 left-10 right-10">
+                        <p className="text-white text-2xl md:text-3xl font-normal leading-snug italic">
+                            &ldquo;UANDWE doesn&rsquo;t just deliver code — they become part of your team.&rdquo;
+                        </p>
+                        <div className="flex items-center gap-3 mt-5">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=60&auto=format&fit=crop&q=80" alt="CTO" className="w-9 h-9 rounded-full object-cover grayscale opacity-80" />
+                            <div>
+                                <div className="text-white/90 text-sm font-medium">David Chen</div>
+                                <div className="text-white/50 text-xs">CTO, DriveNext Systems</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Right — Vertical stat rows */}
+                <div className="lg:w-1/2 flex flex-col divide-y divide-neutral-100 px-10 py-14 justify-center">
+                    <h2 className="text-[clamp(1.5rem,3vw,2.5rem)] font-normal leading-[1.1] tracking-tight text-black mb-12">
+                        How We Work<br />With You
+                    </h2>
+                    {rows.map((row, idx) => (
+                        <motion.div
+                            key={idx}
+                            initial={{ opacity: 0, x: 20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: idx * 0.08 }}
+                            className="flex items-center justify-between gap-6 py-6 group"
+                        >
+                            <div className="flex flex-col gap-1">
+                                <span className="text-xs text-neutral-400 uppercase tracking-widest font-medium">{row.label}</span>
+                                <span className="text-neutral-500 text-sm leading-relaxed">{row.desc}</span>
+                            </div>
+                            <div className="text-2xl md:text-3xl font-semibold text-neutral-900 shrink-0 group-hover:text-neutral-600 transition-colors">
+                                {row.value}
+                            </div>
+                        </motion.div>
+                    ))}
+                </div>
+
+            </div>
+        </section>
+    );
+};
+
+
 /* ══════════════════════════════════════════════════════════════
    IndustriesLayout Component
    ══════════════════════════════════════════════════════════════ */
@@ -815,6 +880,7 @@ const IndustriesLayout = ({ hero, categories, approach, challenge, experts, test
             <IndustryHero hero={hero} pageKey={pageKey} />
             <IndustryChallenge challenge={challenge} pageKey={pageKey} />
             <IndustryApproach approach={approach} pageKey={pageKey} />
+            <IndustryBentoGrid />
             <WhyChooseUs categories={categories} />
             <IndustryCaseStudies caseStudies={caseStudies} pageKey={pageKey} />
             <IndustryTestimonial testimonials={testimonials} pageKey={pageKey} />

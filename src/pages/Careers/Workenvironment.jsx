@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { Users, Monitor, Zap, Globe, MessageSquare, Compass, ArrowRight, Quote } from 'lucide-react';
@@ -62,6 +62,7 @@ const RAW_ENVIRONMENT_FEATURES = [
 export default function Workenvironment() {
   const { t } = useTranslation();
   const translatedFeatures = t("careers.workEnvironment.features", { returnObjects: true, defaultValue: [] });
+  const [isPlayMode, setIsPlayMode] = useState(false);
 
   const fadeUpVariant = {
     hidden: { opacity: 0, y: 30 },
@@ -69,20 +70,34 @@ export default function Workenvironment() {
   };
 
   return (
-    <div className="bg-white min-h-screen text-neutral-900 pt-32 pb-16 px-[4%] max-w-[1400px] mx-auto">
+    <div className="bg-white min-h-screen text-neutral-900 w-full">
       
-      {/* HERO */}
-      <div className="w-full pb-16 border-b border-black/10">
-        <motion.div initial="hidden" animate="visible" variants={fadeUpVariant} className="max-w-4xl">
-          <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] font-normal tracking-tight uppercase leading-tight text-neutral-900">
-            Where Great Minds Thrive
-          </h1>
-        </motion.div>
-        <Paragraph 
-          className="text-sm lg:text-base xl:text-lg leading-relaxed text-neutral-500 font-normal mt-8 max-w-3xl"
-          text="An ecosystem engineered for top-tier talent. Zero bureaucracy and absolute freedom to build the future."
-        />
+      {/* IMMERSIVE HERO */}
+      <div className="relative w-full h-screen min-h-[600px] flex items-end pb-24 px-[4%]">
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2000&auto=format&fit=crop" 
+            alt="Engineering Work Environment" 
+            className="w-full h-full object-cover grayscale opacity-90"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-black/20" />
+        </div>
+        
+        <div className="relative z-10 w-full max-w-[1600px] mx-auto flex flex-col gap-6">
+          <motion.div initial="hidden" animate="visible" variants={fadeUpVariant} className="max-w-5xl">
+            <h1 className="text-5xl md:text-6xl lg:text-[5rem] font-normal tracking-tight uppercase leading-[1.1] text-white">
+              Where Great Minds Thrive
+            </h1>
+          </motion.div>
+          <Paragraph 
+            className="text-base md:text-lg lg:text-xl leading-relaxed !text-neutral-300 font-normal max-w-2xl"
+            text="An ecosystem engineered for top-tier talent. Zero bureaucracy and absolute freedom to build the future."
+          />
+        </div>
       </div>
+
+      {/* INNER CONTENT WRAPPER */}
+      <div className="px-[4%] max-w-[1600px] mx-auto">
 
       {/* SPATIAL DYNAMICS / GALLERY */}
       <div className="w-full py-24 border-b border-black/10">
@@ -128,12 +143,94 @@ export default function Workenvironment() {
                 <h3 className="text-2xl font-normal text-neutral-900 tracking-tight mb-4 group-hover:text-white transition-colors duration-500">
                   {title}
                 </h3>
-                <p className="text-neutral-500 font-normal text-sm leading-relaxed group-hover:text-neutral-400 transition-colors duration-500">
-                  {desc}
-                </p>
+                <Paragraph 
+                  text={desc}
+                  className="!text-neutral-500 font-normal text-sm leading-relaxed group-hover:!text-neutral-400 transition-colors duration-500"
+                />
               </motion.div>
             );
           })}
+        </div>
+      </div>
+
+      {/* WORK / PLAY DUALITY SWITCHER */}
+      <div className="w-full py-24 border-b border-black/10 bg-neutral-900 transition-colors duration-1000" style={{ backgroundColor: isPlayMode ? '#111' : '#000' }}>
+        <div className="max-w-6xl mx-auto px-[4%] flex flex-col items-center">
+          
+          <div className="flex items-center gap-6 mb-16">
+            <span className={`text-2xl md:text-3xl font-normal transition-colors duration-500 ${!isPlayMode ? 'text-white' : 'text-neutral-600'}`}>Deep Work</span>
+            
+            {/* The Toggle Switch */}
+            <button 
+              onClick={() => setIsPlayMode(!isPlayMode)}
+              className="w-24 h-12 rounded-full bg-neutral-800 border border-white/20 relative flex items-center px-2 cursor-pointer transition-colors duration-500 hover:border-white/50"
+            >
+              <motion.div 
+                animate={{ x: isPlayMode ? 48 : 0 }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                className="w-8 h-8 rounded-full bg-white shadow-lg"
+              />
+            </button>
+            
+            <span className={`text-2xl md:text-3xl font-normal transition-colors duration-500 ${isPlayMode ? 'text-white' : 'text-neutral-600'}`}>Deep Play</span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full h-[600px]">
+            
+            <motion.div 
+              className="col-span-1 md:col-span-2 relative overflow-hidden bg-neutral-800 group"
+              animate={{ opacity: 1 }}
+              key={isPlayMode ? 'play-1' : 'work-1'}
+              initial={{ opacity: 0, scale: 0.98 }}
+              transition={{ duration: 0.6 }}
+            >
+              <img 
+                src={isPlayMode 
+                  ? "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&auto=format&fit=crop&q=80" 
+                  : "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&auto=format&fit=crop&q=80"}
+                alt="Main"
+                className="w-full h-full object-cover grayscale opacity-60 group-hover:opacity-100 transition-opacity duration-700"
+              />
+              <div className="absolute inset-0 flex flex-col justify-end p-8 bg-gradient-to-t from-black/80 to-transparent">
+                <h3 className="text-white text-3xl font-normal">{isPlayMode ? "Friday Night Celebrations" : "Silicon Bring-up"}</h3>
+              </div>
+            </motion.div>
+
+            <div className="col-span-1 flex flex-col gap-6 h-full">
+              <motion.div 
+                className="flex-1 relative overflow-hidden bg-neutral-800 group"
+                animate={{ opacity: 1 }}
+                key={isPlayMode ? 'play-2' : 'work-2'}
+                initial={{ opacity: 0, scale: 0.98 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+              >
+                <img 
+                  src={isPlayMode 
+                    ? "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=80" 
+                    : "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&auto=format&fit=crop&q=80"}
+                  alt="Top Right"
+                  className="w-full h-full object-cover grayscale opacity-60 group-hover:opacity-100 transition-opacity duration-700"
+                />
+              </motion.div>
+
+              <motion.div 
+                className="flex-1 relative overflow-hidden bg-neutral-800 group"
+                animate={{ opacity: 1 }}
+                key={isPlayMode ? 'play-3' : 'work-3'}
+                initial={{ opacity: 0, scale: 0.98 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <img 
+                  src={isPlayMode 
+                    ? "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=600&auto=format&fit=crop&q=80" 
+                    : "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&auto=format&fit=crop&q=80"}
+                  alt="Bottom Right"
+                  className="w-full h-full object-cover grayscale opacity-60 group-hover:opacity-100 transition-opacity duration-700"
+                />
+              </motion.div>
+            </div>
+
+          </div>
         </div>
       </div>
 
@@ -199,14 +296,22 @@ export default function Workenvironment() {
           </motion.div>
 
           <motion.div variants={fadeUpVariant} initial="hidden" whileInView="visible" viewport={{ once: true }} className="md:col-span-1 aspect-square relative group overflow-hidden border-b border-r border-black/10 bg-neutral-100">
-            <img src="https://images.unsplash.com/photo-1506869640319-fea1a2ab8e40?w=600&auto=format&fit=crop&q=80" alt="Retreat" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
+            <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=600&auto=format&fit=crop" alt="Retreat" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
             <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8">
               <h3 className="text-white text-xl font-normal tracking-tight">Annual Retreats</h3>
               <p className="text-neutral-300 text-sm font-normal mt-2">Taking the whole team off-grid.</p>
             </div>
           </motion.div>
 
-          <motion.div variants={fadeUpVariant} initial="hidden" whileInView="visible" viewport={{ once: true }} className="md:col-span-3 aspect-[3/1] relative group overflow-hidden border-b border-r border-black/10 bg-neutral-100">
+          <motion.div variants={fadeUpVariant} initial="hidden" whileInView="visible" viewport={{ once: true }} className="md:col-span-1 aspect-square relative group overflow-hidden border-b border-r border-black/10 bg-neutral-100">
+            <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=600&auto=format&fit=crop" alt="Collaboration" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
+            <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8">
+              <h3 className="text-white text-xl font-normal tracking-tight">Open Culture</h3>
+              <p className="text-neutral-300 text-sm font-normal mt-2">No closed doors. Just great ideas.</p>
+            </div>
+          </motion.div>
+
+          <motion.div variants={fadeUpVariant} initial="hidden" whileInView="visible" viewport={{ once: true }} className="md:col-span-2 aspect-[2/1] relative group overflow-hidden border-b border-r border-black/10 bg-neutral-100">
             <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1200&auto=format&fit=crop&q=80" alt="Celebration" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
             <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8 md:p-12">
               <h3 className="text-white text-2xl md:text-3xl font-normal tracking-tight">Product Launches</h3>
@@ -242,6 +347,8 @@ export default function Workenvironment() {
           <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
         </Link>
       </motion.div>
+
+      </div> {/* END INNER CONTENT WRAPPER */}
 
     </div>
   );

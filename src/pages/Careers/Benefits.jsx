@@ -78,23 +78,28 @@ export default function Benefits() {
   return (
     <div className="bg-white min-h-screen text-neutral-900 pb-32">
       
-      {/* HERO SECTION */}
-      <div className="w-full px-[4%] max-w-[1600px] mx-auto pt-32 pb-12 border-b border-black/10">
-
-
-        <motion.h1 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="text-4xl md:text-5xl lg:text-[3.5rem] font-normal tracking-tight uppercase leading-tight"
-        >
-          {t("careers.benefits.heroTitlePart1", "Beyond the")} {t("careers.benefits.heroTitlePart2", "Salary")}
-        </motion.h1>
-
-        <Paragraph 
-          className="text-sm lg:text-base xl:text-lg leading-relaxed text-neutral-500 font-normal mt-12 max-w-3xl"
-          text="We demand excellence, and in return, we provide an ecosystem designed to support your health, wealth, and continuous growth."
-        />
+      {/* IMMERSIVE HERO */}
+      <div className="relative w-full h-screen min-h-[600px] flex items-end pb-24 px-[4%]">
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2000&auto=format&fit=crop" 
+            alt="Benefits and Perks" 
+            className="w-full h-full object-cover grayscale opacity-90"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-black/20" />
+        </div>
+        
+        <div className="relative z-10 w-full max-w-[1600px] mx-auto flex flex-col gap-6">
+          <motion.div initial="hidden" animate="visible" variants={fadeUpVariant} className="max-w-5xl">
+            <h1 className="text-5xl md:text-6xl lg:text-[5rem] font-normal tracking-tight uppercase leading-[1.1] text-white">
+              {t("careers.benefits.heroTitlePart1", "Beyond the")} {t("careers.benefits.heroTitlePart2", "Salary")}
+            </h1>
+          </motion.div>
+          <Paragraph 
+            className="text-base md:text-lg lg:text-xl leading-relaxed !text-neutral-300 font-normal max-w-2xl"
+            text="We demand excellence, and in return, we provide an ecosystem designed to support your health, wealth, and continuous growth."
+          />
+        </div>
       </div>
 
       <div className="w-full px-[4%] max-w-[1600px] mx-auto mt-20">
