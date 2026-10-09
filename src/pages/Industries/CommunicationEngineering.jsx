@@ -80,6 +80,27 @@ const communicationTestimonials = [
   }
 ];
 
+const communicationCaseStudies = [
+    {
+        title: "5G Open RAN O-RU Development",
+        challenge: "Designing a high-bandwidth Radio Unit (O-RU) adhering strictly to O-RAN Alliance specifications.",
+        result: "Delivered a fully compliant O-RU FPGA bitstream, enabling seamless multi-vendor interoperability.",
+        image: "https://images.unsplash.com/photo-1614064641913-6b71343729d3?q=80&w=800&auto=format&fit=crop"
+    },
+    {
+        title: "Low-Earth Orbit (LEO) Satellite Comm Link",
+        challenge: "Overcoming extreme Doppler shift and free-space path loss in a rapidly moving satellite constellation.",
+        result: "Implemented advanced DSP synchronization algorithms, achieving a stable 1Gbps downlink.",
+        image: "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?q=80&w=800&auto=format&fit=crop"
+    },
+    {
+        title: "800G Optical Transceiver Design",
+        challenge: "Mitigating signal integrity issues in ultra-high-speed PAM4 optical networking hardware.",
+        result: "Optimized PCB routing and SI/PI analysis, passing all rigorous IEEE 802.3df compliance tests.",
+        image: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=800&auto=format&fit=crop"
+    }
+];
+
 const CommunicationEngineering = () => {
     const { t } = useTranslation();
     return (
@@ -96,6 +117,7 @@ const CommunicationEngineering = () => {
             categories={communicationData.categories}
             testimonials={communicationTestimonials}
             experts={communicationExperts}
+            caseStudies={communicationCaseStudies}
         />
     );
 };

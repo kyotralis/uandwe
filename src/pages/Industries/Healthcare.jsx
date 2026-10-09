@@ -80,6 +80,27 @@ const healthcareTestimonials = [
   }
 ];
 
+const healthcareCaseStudies = [
+    {
+        title: "AI-Powered Medical Imaging Analysis",
+        challenge: "Developing a cloud-based deep learning platform to assist radiologists in early cancer detection.",
+        result: "Achieved 99% accuracy in anomaly detection, reducing diagnostic review times by 40%.",
+        image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=800&auto=format&fit=crop"
+    },
+    {
+        title: "Wearable ECG Monitor Firmware",
+        challenge: "Engineering ultra-low power firmware for a continuous ECG monitoring device requiring FDA clearance.",
+        result: "Extended battery life from 5 to 14 days and achieved full IEC 62304 Class B compliance.",
+        image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop"
+    },
+    {
+        title: "Secure IoMT Hospital Infrastructure",
+        challenge: "Creating a zero-trust network architecture for connected infusion pumps and patient monitors.",
+        result: "Eliminated network vulnerabilities and ensured strict HIPAA-compliant data encryption end-to-end.",
+        image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=800&auto=format&fit=crop"
+    }
+];
+
 const Healthcare = () => {
     const { t } = useTranslation();
     return (
@@ -96,6 +117,7 @@ const Healthcare = () => {
             categories={healthcareData.categories}
             testimonials={healthcareTestimonials}
             experts={healthcareExperts}
+            caseStudies={healthcareCaseStudies}
         />
     );
 };

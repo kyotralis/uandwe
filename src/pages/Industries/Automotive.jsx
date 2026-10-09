@@ -80,6 +80,27 @@ const automotiveTestimonials = [
   }
 ];
 
+const automotiveCaseStudies = [
+    {
+        title: "Next-Gen EV Battery Management System",
+        challenge: "Developing a highly efficient, ASIL-D compliant BMS for a leading EV manufacturer.",
+        result: "Achieved 15% improvement in battery range estimation and completed ISO 26262 certification on schedule.",
+        image: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?q=80&w=800&auto=format&fit=crop"
+    },
+    {
+        title: "ADAS Domain Controller Integration",
+        challenge: "Porting legacy sensor algorithms to an Adaptive AUTOSAR compliant central compute platform.",
+        result: "Reduced sensor-to-actuation latency by 30% and enabled over-the-air (OTA) update capabilities.",
+        image: "https://images.unsplash.com/photo-1518982540-4b11f185db2d?q=80&w=800&auto=format&fit=crop"
+    },
+    {
+        title: "V2X Communication Firmware",
+        challenge: "Implementing secure, ultra-low latency Vehicle-to-Everything communication protocols.",
+        result: "Successfully deployed reliable V2X stacks meeting strict European C-ITS safety standards.",
+        image: "https://images.unsplash.com/photo-1620891549027-942f9e4e2c07?q=80&w=800&auto=format&fit=crop"
+    }
+];
+
 const Automotive = () => {
     const { t } = useTranslation();
     return (
@@ -96,6 +117,7 @@ const Automotive = () => {
             categories={automotiveData.categories}
             testimonials={automotiveTestimonials}
             experts={automotiveExperts}
+            caseStudies={automotiveCaseStudies}
         />
     );
 };
